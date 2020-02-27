@@ -119,25 +119,46 @@ class App extends Component {
 
   render() {
     var pageData = pages[this.state.page];
+    var leftLabel;
+    var rightLabel;
 
     var imageElement = "";
     if (pageData.image) {
       imageElement = <img src={pageData.image} width="400" />;
     }
 
+    if (pageData.rightLabel) {
+      rightLabel = (
+        <button onClick={() => this.goToPage(pageData.rightPage)}>
+          {pageData.rightLabel}
+        </button>
+      );
+    }
+
+    if (pageData.leftLabel) {
+      leftLabel = (
+        <button onClick={() => this.goToPage(pageData.leftPage)}>
+          {pageData.leftLabel}
+        </button>
+      );
+    }
+
     return (
       <div className="App">
         <p>{pageData.text}</p>
         <p>{imageElement}</p>
-        <button onClick={() => this.goToPage(pageData.leftPage)}>
+        {/* <button onClick={() => this.goToPage(pageData.leftPage)}>
           {pageData.leftLabel}
         </button>
         <button onClick={() => this.goToPage(pageData.rightPage)}>
           {pageData.rightLabel}
-        </button>
+        </button> */}
+        {rightLabel}
+        {leftLabel}
       </div>
     );
   }
 }
 
 export default App;
+
